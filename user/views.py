@@ -28,6 +28,29 @@ class UserCreateAPIView(generics.CreateAPIView):
     serializer_class = UserRegistrationSerializer
     permission_classes = [permissions.AllowAny]
 
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        if USER.objects.filter(email=serializer.validated_data['email']).exists():
+            return Response(
+                {
+                    "message": "Email already exists."
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        password = serializer.validated_data.pop('password')
+        user = USER(**serializer.validated_data)
+        user.set_password(password)
+        user.save()
+        accesstoken = AccessToken.for_user(user)
+        return  Response(
+            {
+                "access_token": str(accesstoken)
+            }
+        )
+
+
 
 class LoginAPIView(APIView):
     """
