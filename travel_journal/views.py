@@ -8,7 +8,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from travel_journal.models import TravelJournal
 
-from .serializers import TravelJournalCreateSerializer, TravelJournalSerializer
+from .serializers import TravelJournalCreateSerializer, TravelJournalSerializer, TravelJournalImageSerializer
 
 
 class TravelJournalCreateAPIView(CreateAPIView):
@@ -25,6 +25,14 @@ class TravelJournalCreateAPIView(CreateAPIView):
 
 class TravelJournalUpdateAPIView(UpdateAPIView):
     serializer_class = TravelJournalSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return TravelJournal.objects.filter(user=self.request.user)
+
+
+class TravelJournalImageUpdateAPIView(UpdateAPIView):
+    serializer_class = TravelJournalImageSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):

@@ -2,7 +2,7 @@ from django.urls import path
 
 from rest_framework.routers import DefaultRouter
 
-from .views import TravelJournalCreateAPIView, TravelJournalUpdateAPIView, TravelJournalReadOnlyViewSet, TravelJournalDestroyAPIView
+from .views import TravelJournalCreateAPIView, TravelJournalUpdateAPIView, TravelJournalReadOnlyViewSet, TravelJournalDestroyAPIView, TravelJournalImageUpdateAPIView
 
 
 router = DefaultRouter()
@@ -14,5 +14,6 @@ app_name = 'travel_journal'
 urlpatterns = [
     path('add', TravelJournalCreateAPIView.as_view(), name='create'),
     path('<int:pk>', TravelJournalUpdateAPIView.as_view(), name='update'),
+    path('image/<int:pk>', TravelJournalImageUpdateAPIView.as_view(), name='image-update'),
     path('delete/<int:pk>', TravelJournalDestroyAPIView.as_view(), name='destroy'),
 ] + router.urls

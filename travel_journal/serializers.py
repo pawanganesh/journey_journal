@@ -10,6 +10,12 @@ class TravelJournalSerializer(serializers.ModelSerializer):
         read_only_fields = ['id']
 
 
+class TravelJournalImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TravelJournal
+        fields = ['image']
+
+
 class TravelJournalCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = TravelJournal
