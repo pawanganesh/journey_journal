@@ -13,4 +13,4 @@ class TravelJournalSerializer(serializers.ModelSerializer):
 class TravelJournalCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = TravelJournal
-        fields = ["title", "description", "photo", "city", "place_name", "lat", "long"]
+        fields = ["title", "description", "photo", "place_name", "lat", "long"]
