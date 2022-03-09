@@ -6,8 +6,7 @@ from .models import TravelJournal
 class TravelJournalSerializer(serializers.ModelSerializer):
     class Meta:
         model = TravelJournal
-        fields = '__all__'
-        read_only_fields = ['id']
+        fields = ["title", "description", "place_name", "lat", "long"]
 
 
 class TravelJournalImageSerializer(serializers.ModelSerializer):
