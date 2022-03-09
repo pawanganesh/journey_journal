@@ -13,7 +13,7 @@ class TravelJournalSerializer(serializers.ModelSerializer):
 class TravelJournalImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = TravelJournal
-        fields = ['image']
+        fields = ['photo']
 
 
 class TravelJournalCreateSerializer(serializers.ModelSerializer):
